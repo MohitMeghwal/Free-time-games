@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Time Games - Fun Games Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --gray: #6c757d;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-logo {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            padding: 20px;
+        }
+
+        .circle-smash .game-logo { background: linear-gradient(45deg, #ff6b6b, #ff8e53); }
+        .flying-dot .game-logo { background: linear-gradient(45deg, #4cc9f0, #4361ee); }
+        .choose-color .game-logo { background: linear-gradient(45deg, #7209b7, #f72585); }
+        .coming-soon .game-logo { background: linear-gradient(45deg, #2ec4b6, #20bf55); }
+
+        .game-logo i {
+            font-size: 5rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .game-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .game-desc {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .play-btn {
+            display: block;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.03);
+        }
+
+        /* Ed Section */
+        .ed-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .ed-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .ed-text {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 700px;
+            margin: 0 auto 25px;
+            line-height: 1.7;
+        }
+
+        .ed-coming {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4cc9f0;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .tab-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">Free Time Games</h1>
+            <p class="tagline">Discover fun and engaging games to enjoy during your free time. Perfect for quick breaks or longer play sessions!</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active">All Games</button>
+                <button class="tab-btn">Popular</button>
+                <button class="tab-btn">New</button>
+                <button class="tab-btn">Categories</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="games-grid">
+                <!-- Circle Smash Game -->
+                <div class="game-card circle-smash">
+                    <div class="game-logo">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Circle Smash</h3>
+                        <p class="game-desc">Tap the circles before they disappear! Test your reflexes and precision in this fast-paced game.</p>
+                        <a href="#circle-smash" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Flying Dot Game -->
+                <div class="game-card flying-dot">
+                    <div class="game-logo">
+                        <i class="fas fa-location-arrow"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Flying Dot</h3>
+                        <p class="game-desc">Control a flying dot through challenging obstacles. How far can you go without crashing?</p>
+                        <a href="#flying-dot" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Choose Color Game -->
+                <div class="game-card choose-color">
+                    <div class="game-logo">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Choose Color</h3>
+                        <p class="game-desc">Match the correct color with its name under time pressure. Train your brain and color recognition!</p>
+                        <a href="#choose-color" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- More Games -->
+                <div class="game-card coming-soon">
+                    <div class="game-logo">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Bubble Pop</h3>
+                        <p class="game-desc">Pop bubbles of the same color to score points. Create chain reactions for higher scores!</p>
+                        <a href="#coming-soon" class="play-btn">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <div class="game-card coming-soon">
+                    <div class="game-logo">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Quick Puzzle</h3>
+                        <p class="game-desc">Solve puzzles against the clock. Drag and drop pieces to complete the image as fast as you can!</p>
+                        <a href="#coming-soon" class="play-btn">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <div class="game-card coming-soon">
+                    <div class="game-logo">
+                        <i class="fas fa-dice"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Lucky Roll</h3>
+                        <p class="game-desc">Roll dice to match patterns and win points. A game of luck and strategy!</p>
+                        <a href="#coming-soon" class="play-btn">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ed Section Placeholder -->
+            <div class="ed-section">
+                <h2 class="ed-title">Educational Games Coming Soon</h2>
+                <p class="ed-text">We're developing a special section with educational games that make learning fun. Perfect for students and curious minds of all ages!</p>
+                <div class="ed-coming">ED Section - Coming Soon</div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 Free Time Games. All rights reserved.</p>
+            <p>Enjoy your free time with our fun game collection!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple tab functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // In a real app, this would filter the games
+            });
+        });
+        
+        // Add hover effect to game cards on touch devices
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.game-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.classList.add('hover-effect');
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('hover-effect');
+                    }, 500);
+                });
+            });
+        }
+        
+        // Game link handling
+        document.querySelectorAll('.play-btn').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#coming-soon') {
+                    e.preventDefault();
+                    alert('This game is coming soon! Stay tuned for updates.');
+                }
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Time Games - Fun Games Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --gray: #6c757d;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-logo {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            padding: 20px;
+        }
+
+        .circle-smash .game-logo { background: linear-gradient(45deg, #ff6b6b, #ff8e53); }
+        .flying-dot .game-logo { background: linear-gradient(45deg, #4cc9f0, #4361ee); }
+        .choose-color .game-logo { background: linear-gradient(45deg, #7209b7, #f72585); }
+        .coming-soon .game-logo { background: linear-gradient(45deg, #2ec4b6, #20bf55); }
+
+        .game-logo i {
+            font-size: 5rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .game-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .game-desc {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .play-btn {
+            display: block;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.03);
+        }
+
+        /* Ed Section */
+        .ed-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .ed-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .ed-text {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 700px;
+            margin: 0 auto 25px;
+            line-height: 1.7;
+        }
+
+        .ed-coming {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4cc9f0;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .tab-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">Free Time Games</h1>
+            <p class="tagline">Discover fun and engaging games to enjoy during your free time. Perfect for quick breaks or longer play sessions!</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active">All Games</button>
+                <button class="tab-btn">Popular</button>
+                <button class="tab-btn">New</button>
+                <button class="tab-btn">Categories</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="games-grid">
+                <!-- Circle Smash Game -->
+                <div class="game-card circle-smash">
+                    <div class="game-logo">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Circle Smash</h3>
+                        <p class="game-desc">Tap the circles before they disappear! Test your reflexes and precision in this fast-paced game.</p>
+                        <a href="#circle-smash" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Flying Dot Game -->
+                <div class="game-card flying-dot">
+                    <div class="game-logo">
+                        <i class="fas fa-location-arrow"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Flying Dot</h3>
+                        <p class="game-desc">Control a flying dot through challenging obstacles. How far can you go without crashing?</p>
+                        <a href="#flying-dot" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Choose Color Game -->
+                <div class="game-card choose-color">
+                    <div class="game-logo">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Choose Color</h3>
+                        <p class="game-desc">Match the correct color with its name under time pressure. Train your brain and color recognition!</p>
+                        <a href="#choose-color" class="play-btn">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- More Games -->
+                <div class="game-card coming-soon">
+                    <div class="game-logo">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Bubble Pop</h3>
+                        <p class="game-desc">Pop bubbles of the same color to score points. Create chain reactions for higher scores!</p>
+                        <a href="#coming-soon" class="play-btn">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <div class="game-card coming-soon">
+                    <div class="game-logo">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Quick Puzzle</h3>
+                        <p class="game-desc">Solve puzzles against the clock. Drag and drop pieces to complete the image as fast as you can!</p>
+                        <a href="#coming-soon" class="play-btn">Coming Soon</a>
+                    </div>
+                </div>
+                
+                <div class="game-card coming-soon">
+                    <div class="game-logo">
+                        <i class="fas fa-dice"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Lucky Roll</h3>
+                        <p class="game-desc">Roll dice to match patterns and win points. A game of luck and strategy!</p>
+                        <a href="#coming-soon" class="play-btn">Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ed Section Placeholder -->
+            <div class="ed-section">
+                <h2 class="ed-title">Educational Games Coming Soon</h2>
+                <p class="ed-text">We're developing a special section with educational games that make learning fun. Perfect for students and curious minds of all ages!</p>
+                <div class="ed-coming">ED Section - Coming Soon</div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 Free Time Games. All rights reserved.</p>
+            <p>Enjoy your free time with our fun game collection!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple tab functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // In a real app, this would filter the games
+            });
+        });
+        
+        // Add hover effect to game cards on touch devices
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.game-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.classList.add('hover-effect');
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('hover-effect');
+                    }, 500);
+                });
+            });
+        }
+        
+        // Game link handling
+        document.querySelectorAll('.play-btn').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#coming-soon') {
+                    e.preventDefault();
+                    alert('This game is coming soon! Stay tuned for updates.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
