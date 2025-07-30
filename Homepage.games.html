@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Free Time Games - Play Circle Smash, Choose Color, Flying Dot and more fun games online!" />
-  <meta name="keywords" content="Free Time Games, HTML5 Games, Mobile Games, Circle Smash, Flying Dot, Choose Color" />
+  <meta name="description" content="Free Time Games - Play Circle Smash, Choose Color, Flying Dot, Tic Tac Toe and more fun games online!" />
+  <meta name="keywords" content="Free Time Games, HTML5 Games, Circle Smash, Flying Dot, Choose Color, Tic Tac Toe" />
   <meta name="author" content="Mohit Meghwal" />
   <title>Free Time Games</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -124,17 +123,10 @@
       font-weight: bold;
     }
 
-    .circle-smash {
-      background-color: #ff4d4d;
-    }
-
-    .choose-color {
-      background-color: #4d94ff;
-    }
-
-    .flying-dot {
-      background-color: #33cc99;
-    }
+    .circle-smash { background-color: #ff4d4d; }
+    .choose-color { background-color: #4d94ff; }
+    .flying-dot   { background-color: #33cc99; }
+    .tictactoe    { background-color: #ffcc00; }
 
     footer {
       background-color: rgba(0, 0, 0, 0.6);
@@ -144,7 +136,6 @@
       backdrop-filter: blur(8px);
     }
 
-    /* Entrance Animations */
     @keyframes fadeInDown {
       from { transform: translateY(-20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -167,7 +158,7 @@
     <!-- Google AdSense -->
     <ins class="adsbygoogle"
          style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXX"
+         data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
          data-ad-slot="1234567890"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
@@ -175,27 +166,37 @@
 
   <main>
     <section class="game-grid">
+      <!-- Circle Smash -->
       <a href="games/circle-smash.html" class="game-card circle-smash">
         <div class="emoji-logo">🎯</div>
         <h3>Circle Smash</h3>
       </a>
 
+      <!-- Choose Color -->
       <a href="games/choose-color.html" class="game-card choose-color">
         <div class="emoji-logo">🎨</div>
         <h3>Choose Color</h3>
       </a>
 
+      <!-- Flying Dot -->
       <a href="games/flying-dot.html" class="game-card flying-dot">
         <div class="emoji-logo">🥏</div>
         <h3>Flying Dot</h3>
+      </a>
+
+      <!-- Tic Tac Toe -->
+      <a href="games/tic-tac-toe.html" class="game-card tictactoe">
+        <div class="emoji-logo">❌⭕</div>
+        <h3>Tic Tac Toe</h3>
       </a>
     </section>
   </main>
 
   <section class="ad-banner">
+    <!-- Google AdSense -->
     <ins class="adsbygoogle"
          style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXXXX"
+         data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
          data-ad-slot="9876543210"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
@@ -205,7 +206,7 @@
     <p>© 2025 Free Time Games. All rights reserved.</p>
   </footer>
 
-  <!-- Google AdSense -->
+  <!-- Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
